@@ -1,0 +1,3 @@
+region,.y.,n,statistic,DFn,DFd,p,method
+peri,n,527,22.41,1,524.8227561212308,2.84e-6,Welch ANOVA
+arm,n,527,34.41,1,499.94806312741093,8.14e-9,Welch ANOVA
