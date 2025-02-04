@@ -1,9 +1,7 @@
 # Description 
 library(tidyverse)
-# library(khroma)
 library(scales)
 library(extrafont)
-# library(RColorBrewer)
 library(ggsci)
 library(multcompView)
 library(rstatix)
@@ -26,11 +24,12 @@ pal_GBS <- c("blue", "red")
 names(pal_GBS) <- c("wt","h2aw")
 
 # ===== INPUT DATA =====
-wd <- "/home/namilhand/01_Projects/PGR_informatics/GBS_analysis"
+# wd <- "/your/working/directory/here"
+wd <- "/home/namilhand/01_Projects/PGR_informatics/GBS_analysis/stat_analysis"
 setwd(wd)
-dir.create(file.path(wd, "example/results"), recursive=T)
+dir.create(file.path(wd, "results"), recursive=T)
 
-dir_cotable <- "example/data/cotable"
+dir_cotable <- "data/cotable"
 
 ## cotable
 wt <- read_csv(file.path(dir_cotable, "Selected_inhouse_WT_cotable.txt"))
@@ -59,7 +58,7 @@ south.end <- c(18270000, 7320000, 16730000, 6630000, 15550000)
 coord_pericen <- tibble(chr=1:5, north=north.start + tha.cum[1:5], south=south.end + tha.cum[1:5])
 
 # Read arabidopsis cumulative genome coord
-tha.cum_coord <- read_csv("example/data/tair10_cumulative_coord.csv")
+tha.cum_coord <- read_csv("data/tair10_cumulative_coord.csv")
 
 
 # ===== INPUT PROCESSING =====
@@ -155,7 +154,7 @@ cos.summary <- cos.count %>%
     add_column(t_test.vs_wt=t_test.pvalue) %>%
     add_column(cos.width)
 
-write_csv(cos.summary, file="CO_meta_summary.csv")
+write_csv(cos.summary, file="results/CO_meta_summary.csv")
 
 
 ## CO frequency histogram
@@ -165,11 +164,11 @@ p.co_freq <- ggplot() +
     facet_grid(rows="genotype", scales="free_y") +
     labs(y="Frequency", x="Crossovers")
 
-dir.create("plots", recursive=T)
-pdf(file=file.path("plots", "CO_frequency_hist.pdf"), width=1.8, height=1.5)
+dir.create("results/plots", recursive=T)
+pdf(file=file.path("results/plots", "CO_frequency_hist.pdf"), width=1.8, height=1.5)
 print(p.co_freq)
 dev.off()
-png(file=file.path("plots", "CO_frequency_hist.png"), width=1.8, height=1.5, unit="in", res=300)
+png(file=file.path("results/plots", "CO_frequency_hist.png"), width=1.8, height=1.5, unit="in", res=300)
 print(p.co_freq)
 dev.off()
 
@@ -276,7 +275,7 @@ cotable_armperi_summary <- cotable_armperi_summary %>%
     add_column(pval.ttest = armperi_pval_twoside) %>%
     add_column(pval.wilcox = armperi_wilcox_twoside)
 
-write_tsv(cotable_armperi_summary, file="ArmPeri_CO-rate_mean_sd_se_ttest.tsv")
+write_tsv(cotable_armperi_summary, file="results/ArmPeri_CO-rate_mean_sd_se_ttest.tsv")
 
 ## STAT test (chi-sqaure)
 ## chisq test (proportion of pericentromeric CO)
@@ -309,7 +308,7 @@ chisqInRegion <- function(region){
 cotable_armperi_count_sum_wide$chisq.arm = chisqInRegion("arm")
 cotable_armperi_count_sum_wide$chisq.peri = chisqInRegion("peri")
 
-write_tsv(cotable_armperi_count_sum_wide, file="hta_co_summary_with_chisq.tsv")
+write_tsv(cotable_armperi_count_sum_wide, file="results/hta_co_summary_with_chisq.tsv")
 
 ###################
 # ANOVA: COs compared in pericentromere/arm
@@ -323,7 +322,7 @@ cotable_armperi_count.arm <- filter(cotable_armperi_count, region == "arm") %>%
 # Test for homogeneity of variance
 levene.peri <- levene_test(cotable_armperi_count.peri, n ~ genotype)
 levene.arm <- levene_test(cotable_armperi_count.arm, n ~ genotype)
-write.csv(file="cotable_armperi_levene_test.csv", bind_rows(list(peri=levene.peri, arm=levene.arm), .id="region"))
+write.csv(file="results/cotable_armperi_levene_test.csv", bind_rows(list(peri=levene.peri, arm=levene.arm), .id="region"))
 
 # pericentromere
 ## welch's one-way anova test
@@ -348,9 +347,9 @@ armperi.aov <- bind_rows(list(peri=peri.aov, arm=arm.aov), .id="region")
 armperi.gh <- bind_rows(list(peri=peri.gh, arm=arm.gh), .id="region")
 armperi.result <- list(peri=peri.letter, arm=arm.letter)
 
-write_csv(armperi.aov, file="armperi_anova_result.csv")
-write_csv(armperi.gh, file="armperi_games-howell_result.csv")
-sink(file="armperi_games-howell_letter.txt")
+write_csv(armperi.aov, file="results/armperi_anova_result.csv")
+write_csv(armperi.gh, file="results/armperi_games-howell_result.csv")
+sink(file="results/armperi_games-howell_letter.txt")
 print(armperi.result)
 sink()
 
@@ -383,23 +382,23 @@ p.codist.armperi <- plotCoDistInRegion(cotable_armperi_count, c("arm", "peri"))
 p.codist.arm <- plotCoDistInRegion(cotable_armperi_count, c("arm"))
 p.codist.peri <- plotCoDistInRegion(cotable_armperi_count, c("peri"))
 
-cairo_pdf(file="plots/CO_dist_in_armperi.pdf", width=2.5, height=1.5)
+cairo_pdf(file="results/plots/CO_dist_in_armperi.pdf", width=2.5, height=1.5)
 print(p.codist.armperi)
 dev.off()
-png(file="plots/CO_dist_in_armperi.png", width=2.5, height=1.5, unit="in", res=300)
+png(file="results/plots/CO_dist_in_armperi.png", width=2.5, height=1.5, unit="in", res=300)
 print(p.codist.armperi)
 dev.off()
 
-cairo_pdf(file="plots/CO_dist_in_arm.pdf", width=2.5, height=1.5)
+cairo_pdf(file="results/plots/CO_dist_in_arm.pdf", width=2.5, height=1.5)
 print(p.codist.arm)
 dev.off()
-png(file="plots/CO_dist_in_arm.png", width=2.5, height=1.5, unit="in", res=300)
+png(file="results/plots/CO_dist_in_arm.png", width=2.5, height=1.5, unit="in", res=300)
 print(p.codist.arm)
 dev.off()
 
-cairo_pdf(file="plots/CO_dist_in_peri.pdf", width=2.5, height=1.5)
+cairo_pdf(file="results/plots/CO_dist_in_peri.pdf", width=2.5, height=1.5)
 print(p.codist.peri)
 dev.off()
-png(file="plots/CO_dist_in_peri.png", width=2.5, height=1.5, unit="in", res=300)
+png(file="results/plots/CO_dist_in_peri.png", width=2.5, height=1.5, unit="in", res=300)
 print(p.codist.peri)
 dev.off()
