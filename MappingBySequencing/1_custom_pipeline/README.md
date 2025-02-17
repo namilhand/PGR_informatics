@@ -93,7 +93,7 @@ wait;
 echo finished trimming**
 ```
 
-![**Figure 1. 현재 사용중인 dual-indexed GBS library.** P1/P2로 PCR후 Read1/2 sequencing primer로 sequencing한다. sequencing 결과 첫 9-bp는 index sequence이다.](image.png)
+![**Figure 1. 현재 사용중인 dual-indexed GBS library.** P1/P2로 PCR후 Read1/2 sequencing primer로 sequencing한다. sequencing 결과 첫 9-bp는 index sequence이다.](https://github.com/PGR_informatics/tree/main/MappingBySequencing/1_custom_pipeline/images/image_1.png)
 
 **Figure 1. 현재 사용중인 dual-indexed GBS library.** P1/P2로 PCR후 Read1/2 sequencing primer로 sequencing한다. sequencing 결과 첫 9-bp는 index sequence이다.
 
@@ -230,7 +230,7 @@ bcftools mpileup -f $ref -Ou -a FORMAT/AD,FORMAT/DP \
 
 **Output example**
 
-![image.png](image%201.png)
+![image.png](https://github.com/PGR_informatics/tree/main/MappingBySequencing/1_custom_pipeline/images/image_2.png)
 
 - FORMAT은 각 bamfile에 대한 annotation field (마지막 두 field)가 어떤 형식으로 기록되어 있는지를 보여준다.
 - 넣어준 input bam file들의 genotyping 정보를 각 genomic position마다 FORMAT의 형식으로 보여준다.
