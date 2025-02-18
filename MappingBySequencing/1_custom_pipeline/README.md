@@ -230,7 +230,7 @@ bcftools mpileup -f $ref -Ou -a FORMAT/AD,FORMAT/DP \
 
 **Output example**
 
-![image.png](https://github.com/namilhand/PGR_informatics/blob/main/MappingBySequencing/1_custom_pipeline/images/image_2.png)
+![**Figure 2. hcr7_allvar.vcf**](https://github.com/namilhand/PGR_informatics/blob/main/MappingBySequencing/1_custom_pipeline/images/image_2.png)
 
 - FORMAT은 각 bamfile에 대한 annotation field (마지막 두 field)가 어떤 형식으로 기록되어 있는지를 보여준다.
 - 넣어준 input bam file들의 genotyping 정보를 각 genomic position마다 FORMAT의 형식으로 보여준다.
@@ -281,7 +281,7 @@ fi
 ```
 **Output example**
 
-![**Figure 3. hcr7_allvar.se.vcf**](image%202.png)
+![**Figure 3. hcr7_allvar.se.vcf**](https://github.com/namilhand/PGR_informatics/blob/main/MappingBySequencing/1_custom_pipeline/images/image%203.png)
 
 **Figure 3. hcr7_allvar.se.vcf**
 
@@ -372,7 +372,7 @@ dev.off()
 
 **Output example**
 
-![**Figure 4. Alternative allele frequencies of EMS marker positions. Chr3의 south arm 끝 부분이 causal locus이다.** Chr3: 18 Mb-End 내에서 candidate mutation을 찾아보자.](image%203.png)
+![**Figure 4. Alternative allele frequencies of EMS marker positions. Chr3의 south arm 끝 부분이 causal locus이다.** Chr3: 18 Mb-End 내에서 candidate mutation을 찾아보자.]([image%203.png](https://github.com/namilhand/PGR_informatics/blob/main/MappingBySequencing/1_custom_pipeline/images/image%204.png))
 
 **Figure 4. Alternative allele frequencies of EMS marker positions. Chr3의 south arm 끝 부분이 causal locus이다.** Chr3: 18 Mb-End 내에서 candidate mutation을 찾아보자.
 
