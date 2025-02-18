@@ -10,3 +10,4 @@ dependencies:
   - picard=3.0.0
   - samtools=1.17
   - bioconda::snpeff
+  - r::r-tidyverse
