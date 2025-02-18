@@ -330,16 +330,16 @@ dirout="../results/05_find_candidates"
 dir.create(dirout, recursive=T)
 ```
 
-1. Find locus
+2. Find locus
 
 Reliable한 Marker를 찾고 marker들의 alternative allele frequency가 높은 지역을 찾는다.  
 
 Reliable marker:
 
-1. C>T or G>A mutation
-2. Not in organell genome
-3. Higher depth (wt.dp and mut.dp) ensure less variation
-4. wt.alt(WT bulk의 alternative allele)이나 mut.alt(mutant bulk의 alternative allele)의 depth가 0일 수 없다.
+  1. C>T or G>A mutation
+  2. Not in organell genome
+  3. Higher depth (wt.dp and mut.dp) ensure less variation
+  4. wt.alt(WT bulk의 alternative allele)이나 mut.alt(mutant bulk의 alternative allele)의 depth가 0일 수 없다.
 
 sequencing depth에 따라 wt.dp, mut.dp 값은 조정이 필요하다.
 
@@ -377,7 +377,7 @@ dev.off()
 
 **Figure 4. Alternative allele frequencies of EMS marker positions. Chr3의 south arm 끝 부분이 causal locus이다.** Chr3: 18 Mb-End 내에서 candidate mutation을 찾아보자.
 
-1. Find candidates
+3. Find candidates
 
 ```r
 
