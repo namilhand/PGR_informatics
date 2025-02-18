@@ -279,6 +279,129 @@ else
 	print "wt_bulk argument should be either yer or no"
 fi
 ```
+**Output example**
+
+![**Figure 3. hcr7_allvar.se.vcf**](image%202.png)
+
+**Figure 3. hcr7_allvar.se.vcf**
+
+wt.ref: reference count of wt bulk
+
+wt.alt: alternative count of wt bulk
+
+mut.ref: reference count of mut bulk
+
+mut.alt: alternative count of mut bulk
+
+wt.dp: reliable depth of the position
+
+mut.dp: reliable depth of the position
+
+**Calculation of ratio**
+
+ratio: {mut.alt/(mut.alt + mut.ref)} - {wt.alt/(wt.alt + wt.ref)} 
+
+- If a variant is the recessive causal mutation, expected value is …
+    - mut.alt/(mut.alt + mut.ref) → 1
+    - wt.alt/(wt.alt + wt.ref) → 1/3
+    - **Therefore, the ideal ratio is 2/3 (~0.66)**
+    - **In this way you can exclude background mutations.**
+
+Otherwise, you can just use allele frequency of mutant bulk. In that case,
+
+- ratio = mut.alt/(mut.ref + mut.alt) ~ 1
+
+### 5. Find candidates
+
+- Script: src/05_find_candidates_[with/without]_WT-bulk.R
+    - WT-bulk data가 있는 경우 → 05_find_candidates_with_WT-bulk.R
+- 아래에는 WT-bulk data가 있는 경우를 기준으로 설명한다.
+
+1. Setting input and output directory
+
+```r
+library(tidyverse)
+
+# Set the arguments below
+
+allvar=read_tsv("../results/04_annotate_vcf/hcr7_allvar.se.tsv", col_names=T)
+dirout="../results/05_find_candidates"
+dir.create(dirout, recursive=T)
+```
+
+1. Find locus
+
+Reliable한 Marker를 찾고 marker들의 alternative allele frequency가 높은 지역을 찾는다.  
+
+Reliable marker:
+
+1. C>T or G>A mutation
+2. Not in organell genome
+3. Higher depth (wt.dp and mut.dp) ensure less variation
+4. wt.alt(WT bulk의 alternative allele)이나 mut.alt(mutant bulk의 alternative allele)의 depth가 0일 수 없다.
+
+sequencing depth에 따라 wt.dp, mut.dp 값은 조정이 필요하다.
+
+```r
+#=============================
+# 1. Draw landscape
+#=============================
+markers <- filter(allvar, (ref == "C" & alt == "T") | (ref == "G" & alt == "A")) %>%
+	filter(chr != "ChrM", chr != "ChrC") %>%
+	filter(wt.dp > 8 & mut.dp > 8) %>%
+	filter(wt.alt != 0, mut.alt !=0)
+
+pMarker <- ggplot(markers, aes(x=pos, y=ratio)) +
+	geom_point(size=0.6) +
+	facet_grid(rows=vars(chr), scales="free_x") +
+	geom_smooth(colour="blue", method="loess", span=0.1, linewidth=0.5) +
+	scale_y_continuous(limits=c(-1, 1)) +
+	scale_x_continuous(labels= ~ round(.x/1000000, digits=0)) +
+	theme_bw() +
+	labs(x="Position (Mb)", y="ratio")
+
+pdf(file=file.path(dirout, paste0("marker_ratio_landscape.pdf")), width=4, height=4)
+print(pMarker)
+dev.off()
+
+png(file=file.path(dirout, paste0("marker_ratio_landscape.png")), width=4, height=4, res=300, unit="in")
+print(pMarker)
+dev.off()
+
+```
+
+**Output example**
+
+![**Figure 4. Alternative allele frequencies of EMS marker positions. Chr3의 south arm 끝 부분이 causal locus이다.** Chr3: 18 Mb-End 내에서 candidate mutation을 찾아보자.](image%203.png)
+
+**Figure 4. Alternative allele frequencies of EMS marker positions. Chr3의 south arm 끝 부분이 causal locus이다.** Chr3: 18 Mb-End 내에서 candidate mutation을 찾아보자.
+
+1. Find candidates
+
+```r
+
+# Causal locus
+# Chr3: 18,000,000 - End
+
+#=============================
+# 2. Find candidate
+#=============================
+
+effect <- c("splice_acceptor_variant", "splice_donor_variant", "splice_region_variant", "stop_lost", "start_lost", "stop_gained", "missense_variant", "coding_sequence_variant", "inframe_insertion", "disruptive_inframe_insertion", "inframe_deletion", "disruptive_inframe_deletion", "exon_variant", "exon_loss_variant", "duplication", "inversion", "frameshift_variant", "frameshift_ablation", "gene_fusion", "bidirectional_gene_fusion", "rearranged_at_DNA_level", "miRNA", "initiator_codon_variant", "start_retained")
+
+cand <- separate(allvar, col=mutation_effect, into=c("effect1", "effect2"), sep="&", fill="right") %>%
+	filter(effect1 %in% effect | effect2 %in% effect) %>%
+	filter(type == "INDEL" | (ref == "C" & alt == "T") | (ref == "G" & alt == "A")) %>%
+	filter(chr == "Chr3" & pos > 18000000) %>%
+	filter(ratio > 0.3)
+
+write_tsv(cand, file.path(dirout, paste0("hcr7_candidate.tsv")))
+```
+
+- effect: snpEff annotation 중에 protein sequence나 gene expresion에 영향을 줄 수 있는 effect들.
+- allvar 중에서 INDEL이거나 C>T or G>A mutation만을 고려한다.
+- Causal locus안에서 ratio가 0.3 이상인 variant들만을 고려한다.
+
 
 # References
 
