@@ -239,6 +239,10 @@ bcftools mpileup -f $ref -Ou -a FORMAT/AD,FORMAT/DP \
 
 - src/4_annotate_variants.sh
 
+snpEff는 variant마다 gene expression이나 protein sequence에 어떤 영향을 미칠 수 있는지를 예측해준다.
+https://pcingola.github.io/SnpEff/
+
+
 ```bash
 #!/bin/bash
 
