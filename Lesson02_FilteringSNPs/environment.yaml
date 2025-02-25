@@ -1,0 +1,16 @@
+# mamba env create --name qtl --file environment.yaml
+
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - snakemake=7.25.2
+  - cutadapt=4.4
+  - bowtie2=2.5.1
+  - picard=3.0.0
+  - samtools=1.17
+  - bioconda::gatk4
+  - r::r-tidyverse
+  - bioconda::syri
+  - bioconda::minimap2

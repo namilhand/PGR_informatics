@@ -1,0 +1,55 @@
+Using GATK jar /home/nison/anaconda3/envs/qtl/share/gatk4-4.6.1.0-0/gatk-package-4.6.1.0-local.jar
+Running:
+    java -Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=2 -Xmx20g -Xms20g -jar /home/nison/anaconda3/envs/qtl/share/gatk4-4.6.1.0-0/gatk-package-4.6.1.0-local.jar GenomicsDBImport --genomicsdb-workspace-path /datasets/data_4/nison/PGR_informatics/Lesson02_FilteringSNPs/result/03_joint_genotyping/genomics_db --batch-size 50 -L /datasets/data_4/nison/PGR_informatics/Lesson02_FilteringSNPs/data/genomics_db.intervals --sample-name-map /datasets/data_4/nison/PGR_informatics/Lesson02_FilteringSNPs/result/03_joint_genotyping/col_ler_f2.sample_map --tmp-dir /datasets/data_4/nison/PGR_informatics/Lesson02_FilteringSNPs/tmp --max-num-intervals-to-import-in-parallel 30 --reader-threads 5
+09:47:32.447 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/home/nison/anaconda3/envs/qtl/share/gatk4-4.6.1.0-0/gatk-package-4.6.1.0-local.jar!/com/intel/gkl/native/libgkl_compression.so
+SLF4J(W): Class path contains multiple SLF4J providers.
+SLF4J(W): Found provider [org.apache.logging.slf4j.SLF4JServiceProvider@75e80a97]
+SLF4J(W): Found provider [ch.qos.logback.classic.spi.LogbackServiceProvider@5b8853]
+SLF4J(W): See https://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J(I): Actual provider is of type [org.apache.logging.slf4j.SLF4JServiceProvider@75e80a97]
+09:47:32.572 INFO  GenomicsDBImport - ------------------------------------------------------------
+09:47:32.574 INFO  GenomicsDBImport - The Genome Analysis Toolkit (GATK) v4.6.1.0
+09:47:32.575 INFO  GenomicsDBImport - For support and documentation go to https://software.broadinstitute.org/gatk/
+09:47:32.575 INFO  GenomicsDBImport - Executing as nison@ko44.postech.ac.kr on Linux v3.10.0-957.27.2.el7.x86_64 amd64
+09:47:32.575 INFO  GenomicsDBImport - Java runtime: OpenJDK 64-Bit Server VM v17.0.11-internal+0-adhoc..src
+09:47:32.575 INFO  GenomicsDBImport - Start Date/Time: February 25, 2025 at 9:47:32 AM KST
+09:47:32.575 INFO  GenomicsDBImport - ------------------------------------------------------------
+09:47:32.575 INFO  GenomicsDBImport - ------------------------------------------------------------
+09:47:32.576 INFO  GenomicsDBImport - HTSJDK Version: 4.1.3
+09:47:32.576 INFO  GenomicsDBImport - Picard Version: 3.3.0
+09:47:32.577 INFO  GenomicsDBImport - Built for Spark Version: 3.5.0
+09:47:32.579 INFO  GenomicsDBImport - HTSJDK Defaults.COMPRESSION_LEVEL : 2
+09:47:32.579 INFO  GenomicsDBImport - HTSJDK Defaults.USE_ASYNC_IO_READ_FOR_SAMTOOLS : false
+09:47:32.579 INFO  GenomicsDBImport - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_SAMTOOLS : true
+09:47:32.580 INFO  GenomicsDBImport - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_TRIBBLE : false
+09:47:32.580 INFO  GenomicsDBImport - Deflater: IntelDeflater
+09:47:32.580 INFO  GenomicsDBImport - Inflater: IntelInflater
+09:47:32.580 INFO  GenomicsDBImport - GCS max retries/reopens: 20
+09:47:32.580 INFO  GenomicsDBImport - Requester pays: disabled
+09:47:32.581 INFO  GenomicsDBImport - Initializing engine
+09:47:32.743 INFO  IntervalArgumentCollection - Processing 119146348 bp from intervals
+09:47:32.744 INFO  GenomicsDBImport - Done initializing engine
+09:47:33.106 INFO  GenomicsDBLibLoader - GenomicsDB native library version : 1.5.4-764a03c
+09:47:33.108 INFO  GenomicsDBImport - Vid Map JSON file will be written to /datasets/data_4/nison/PGR_informatics/Lesson02_FilteringSNPs/result/03_joint_genotyping/genomics_db/vidmap.json
+09:47:33.108 INFO  GenomicsDBImport - Callset Map JSON file will be written to /datasets/data_4/nison/PGR_informatics/Lesson02_FilteringSNPs/result/03_joint_genotyping/genomics_db/callset.json
+09:47:33.108 INFO  GenomicsDBImport - Complete VCF Header will be written to /datasets/data_4/nison/PGR_informatics/Lesson02_FilteringSNPs/result/03_joint_genotyping/genomics_db/vcfheader.vcf
+09:47:33.109 INFO  GenomicsDBImport - Importing to workspace - /datasets/data_4/nison/PGR_informatics/Lesson02_FilteringSNPs/result/03_joint_genotyping/genomics_db
+09:47:33.109 WARN  GenomicsDBImport - GenomicsDBImport cannot use multiple VCF reader threads for initialization when the number of intervals is greater than 1. Falling back to serial VCF reader initialization.
+09:47:33.968 INFO  GenomicsDBImport - Importing batch 1 with 50 samples
+09:47:33.971 INFO  GenomicsDBImport - Importing batch 1 with 50 samples
+09:47:33.982 INFO  GenomicsDBImport - Importing batch 1 with 50 samples
+09:47:33.982 INFO  GenomicsDBImport - Importing batch 1 with 50 samples
+09:47:34.005 INFO  GenomicsDBImport - Importing batch 1 with 50 samples
+09:49:32.706 INFO  GenomicsDBImport - Done importing batch 1/2
+09:49:32.882 INFO  GenomicsDBImport - Importing batch 2 with 46 samples
+09:49:32.895 INFO  GenomicsDBImport - Importing batch 2 with 46 samples
+09:49:32.896 INFO  GenomicsDBImport - Importing batch 2 with 46 samples
+09:49:32.911 INFO  GenomicsDBImport - Importing batch 2 with 46 samples
+09:49:32.915 INFO  GenomicsDBImport - Importing batch 2 with 46 samples
+09:51:17.175 INFO  GenomicsDBImport - Done importing batch 2/2
+09:51:17.206 INFO  GenomicsDBImport - Import of all batches to GenomicsDB completed!
+09:51:17.207 INFO  GenomicsDBImport - Shutting down engine
+[February 25, 2025 at 9:51:17 AM KST] org.broadinstitute.hellbender.tools.genomicsdb.GenomicsDBImport done. Elapsed time: 3.75 minutes.
+Runtime.totalMemory()=21474836480
+Tool returned:
+true
