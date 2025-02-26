@@ -14,3 +14,5 @@ dependencies:
   - r::r-tidyverse
   - bioconda::syri
   - bioconda::minimap2
+  - r::r-foreach
+  - r::r-doparallel
