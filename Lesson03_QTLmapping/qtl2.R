@@ -104,20 +104,20 @@ dev.off()
 
 
 # B. Zoom in by chromosome
-pLodDist1 <- ggplot(filter(scan.fit.tb, chr=="Chr1"), aes(x=pos, y=fit)) +
+pLodDist4 <- ggplot(filter(scan.fit.tb, chr=="Chr4"), aes(x=pos, y=fit)) +
 		geom_line(colour="blue") +
 		geom_hline(yintercept=thr[1], colour="red") +
 		geom_segment(aes(x=pos, xend=pos, y=0, yend=0.15), colour="black", size=0.05, alpha=0.05) +
 		facet_wrap(facet="chr", nrow=1, ncol=5, scales="free_x") +
-		ylim(-0.5, 8) +
+		scale_x_continuous(labels=~ ./1000000) +
 		xlab("Position (Mb)") +
 		ylab("LOD score")
-pdf(file=file.path(dirout, "dig-col_lod-distribution_chr1.pdf"), width=3, height=2.5)
-print(pLodDist1)
+pdf(file=file.path(dirout, "dig-col_lod-distribution_chr4.pdf"), width=3, height=2.5)
+print(pLodDist4)
 dev.off()
 
-png(file=file.path(dirout, "dig-col_lod-distribution_chr1.png"), width=3, height=2.5, unit="in", res=300)
-print(pLodDist1)
+png(file=file.path(dirout, "dig-col_lod-distribution_chr4.png"), width=3, height=2.5, unit="in", res=300)
+print(pLodDist4)
 dev.off()
 
 # C. Zoom in by peaks
@@ -132,6 +132,7 @@ pDist.peak1 <- ggplot(peak1) +
 		geom_line(colour="blue", aes(x=pos, y=fit)) +
 		geom_hline(yintercept=thr[1], colour="red") +
 		geom_segment(aes(x=pos, xend=pos, y=0, yend=0.15), colour="black", size=0.05, alpha=0.05) +
+		scale_x_continuous(labels=~ ./1000000) +
 		#facet_wrap(facet="chr", nrow=1, ncol=5, scales="free_x") +
 		#ylim(-0.5, 8) +
 		#xlim(7.5, 15) +
