@@ -396,7 +396,7 @@ example of `scan.fit.tb`
 | 1_9 | Chr1 | 88300 | 1.68 | 1.91 |
 | 1_10 | Chr1 | 90571 | 1.68 | 1.91 |
 
-*Drawing Genome-wide LOD score*
+*codes for drawing LOD landscape*
 
 ```r
 # A. Genome-wide LOD score
@@ -446,6 +446,17 @@ pdf(file="result/dig-col_lod-distribution_peak1.pdf", width=2, height=2)
 print(pDist.peak1)
 dev.off()
 ```
+
+1. Genome-wide LOD landscape
+![Fig.1](https://github.com/namilhand/PGR_informatics/blob/main/Lesson03_QTLmapping/img/dig-col_lod-distribution.png)
+
+2. LOD landscape at Chr. 4
+![Fig.2](https://github.com/namilhand/PGR_informatics/blob/main/Lesson03_QTLmapping/img/dig-col_lod-distribution_chr4.png)
+
+3. LOD landscape at the peak
+![Fig.3](https://github.com/namilhand/PGR_informatics/blob/main/Lesson03_QTLmapping/img/dig-col_lod-distribution_peak1.png)
+
+
 
 # Full code
 
@@ -580,3 +591,4 @@ pdf(file="result/dig-col_lod-distribution_peak1.pdf", width=2, height=2)
 print(pDist.peak1)
 dev.off()
 ```
+
