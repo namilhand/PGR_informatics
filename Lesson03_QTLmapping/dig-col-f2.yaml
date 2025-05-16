@@ -1,0 +1,11 @@
+crosstype: f2
+geno: input/dig-col-f2_genotypes.csv
+pheno: input/dig-col-f2_phenotype.csv
+gmap: input/dig-col-f2_physical_map.csv
+alleles:
+- C
+- L
+genotypes:
+  CC: 1
+  CL: 2
+  LL: 3

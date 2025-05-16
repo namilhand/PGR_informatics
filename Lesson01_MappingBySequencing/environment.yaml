@@ -1,4 +1,4 @@
-#  conda env create --name ChIPseq_mapping --file environment.yaml 
+#  conda env create --name MapBySeq --file environment.yaml 
 channels:
   - conda-forge
   - bioconda

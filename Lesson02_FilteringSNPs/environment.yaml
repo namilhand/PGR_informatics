@@ -1,5 +1,4 @@
 # mamba env create --name qtl --file environment.yaml
-
 channels:
   - conda-forge
   - bioconda
@@ -14,3 +13,7 @@ dependencies:
   - r::r-tidyverse
   - bioconda::syri
   - bioconda::minimap2
+  - r-qtl2
+  - bioconda::bioconductor-org.at.tair.db
+  - bioconda::bioconductor-txdb.athaliana.biomart.plantsmart22
+  - conda-forge::r-extrafont
