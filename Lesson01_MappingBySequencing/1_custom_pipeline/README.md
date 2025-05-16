@@ -93,8 +93,7 @@ wait;
 echo finished trimming**
 ```
 
-![**Figure 1. 현재 사용중인 dual-indexed GBS library.** P1/P2로 PCR후 Read1/2 sequencing primer로 sequencing한다. sequencing 결과 첫 9-bp는 index sequence이다.](https://github.com/namilhand/PGR_informatics/blob/main/MappingBySequencing/1_custom_pipeline/images/image_1.png)
-
+![Figure 1](https://github.com/namilhand/PGR_informatics/blob/main/Lesson01_MappingBySequencing/1_custom_pipeline/images/image_1.png)
 **Figure 1. 현재 사용중인 dual-indexed GBS library.** P1/P2로 PCR후 Read1/2 sequencing primer로 sequencing한다. sequencing 결과 첫 9-bp는 index sequence이다.
 
 Library제작에 사용된 Kit와 adapter 정보를 확인해서 trimming에 사용되는 sequence를 지정한다. Illumina library 의 경우 아래 페이지에서 trimming할 adapter sequence를 알 수 있다.
@@ -230,7 +229,7 @@ bcftools mpileup -f $ref -Ou -a FORMAT/AD,FORMAT/DP \
 
 **Output example**
 
-![**Figure 2. hcr7_allvar.vcf**](https://github.com/namilhand/PGR_informatics/blob/main/MappingBySequencing/1_custom_pipeline/images/image_2.png)
+![Figure 2](https://github.com/namilhand/PGR_informatics/blob/main/Lesson01_MappingBySequencing/1_custom_pipeline/images/image_2.png)
 **Figure 2. hcr7_allvar.vcf**
 
 - FORMAT은 각 bamfile에 대한 annotation field (마지막 두 field)가 어떤 형식으로 기록되어 있는지를 보여준다.
@@ -282,7 +281,7 @@ fi
 ```
 **Output example**
 
-![**Figure 3. hcr7_allvar.se.vcf**](https://github.com/namilhand/PGR_informatics/blob/main/MappingBySequencing/1_custom_pipeline/images/image%203.png)
+![Figure 3](https://github.com/namilhand/PGR_informatics/blob/main/Lesson01_MappingBySequencing/1_custom_pipeline/images/image%203.png)
 
 **Figure 3. hcr7_allvar.se.vcf**
 
@@ -373,7 +372,7 @@ dev.off()
 
 **Output example**
 
-![**Figure 4. Alternative allele frequencies of EMS marker positions. Chr3의 south arm 끝 부분이 causal locus이다.** Chr3: 18 Mb-End 내에서 candidate mutation을 찾아보자.](https://github.com/namilhand/PGR_informatics/blob/main/MappingBySequencing/1_custom_pipeline/images/image%204.png)
+![Figure 4](https://github.com/namilhand/PGR_informatics/blob/main/Lesson01_MappingBySequencing/1_custom_pipeline/images/image%204.png)
 
 **Figure 4. Alternative allele frequencies of EMS marker positions. Chr3의 south arm 끝 부분이 causal locus이다.** Chr3: 18 Mb-End 내에서 candidate mutation을 찾아보자.
 
