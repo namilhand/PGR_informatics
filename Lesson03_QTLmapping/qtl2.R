@@ -1,10 +1,9 @@
 library(qtl2)
-#library(qtl2ggplot)
 library(tidyverse)
 library(org.At.tair.db)
 library(TxDb.Athaliana.BioMart.plantsmart22)
 library(extrafont)
-font_import(pattern="Arial", prompt=F)
+font_import(pattern="arial", prompt=F)
 loadfonts(device="pdf")
 
 
@@ -20,7 +19,7 @@ colnames(genes5)[1] <- "chr"
 physical_map <- "input/dig-col-f2_physical_map.csv"
 input <- "dig-col-f2.yaml"
 dirout <- "result"
-gtfpath <- "/home/nison/work/refgenome/araport11/Araport11_GTF_genes_transposons.current.gtf"
+gtfpath <- "data/Araport11_GTF_genes_transposons.current.gtf"
 dir.create(dirout, recursive=T)
 
 yaml <- read_cross2(input)
@@ -99,6 +98,10 @@ pdf(file=file.path(dirout, "dig-col_lod-distribution.pdf"), width=7, height=2.5)
 print(pLodDist)
 dev.off()
 
+png(file=file.path(dirout, "dig-col_lod-distribution.png"), width=7, height=2.5, unit="in", res=300)
+print(pLodDist)
+dev.off()
+
 
 # B. Zoom in by chromosome
 pLodDist1 <- ggplot(filter(scan.fit.tb, chr=="Chr1"), aes(x=pos, y=fit)) +
@@ -110,6 +113,10 @@ pLodDist1 <- ggplot(filter(scan.fit.tb, chr=="Chr1"), aes(x=pos, y=fit)) +
 		xlab("Position (Mb)") +
 		ylab("LOD score")
 pdf(file=file.path(dirout, "dig-col_lod-distribution_chr1.pdf"), width=3, height=2.5)
+print(pLodDist1)
+dev.off()
+
+png(file=file.path(dirout, "dig-col_lod-distribution_chr1.png"), width=3, height=2.5, unit="in", res=300)
 print(pLodDist1)
 dev.off()
 
@@ -131,5 +138,9 @@ pDist.peak1 <- ggplot(peak1) +
 		xlab("Position (Mb)") +
 		ylab("LOD score")
 pdf(file="result/dig-col_lod-distribution_peak1.pdf", width=2, height=2)
+print(pDist.peak1)
+dev.off()
+
+png(file="result/dig-col_lod-distribution_peak1.png", width=2, height=2, unit="in", res=300)
 print(pDist.peak1)
 dev.off()
