@@ -1,34 +1,18 @@
 library(qtl2)
 library(tidyverse)
-library(org.At.tair.db)
-library(TxDb.Athaliana.BioMart.plantsmart22)
 library(extrafont)
 font_import(pattern="arial", prompt=F)
 loadfonts(device="pdf")
-
-
-# For annotation
-txdb <- TxDb.Athaliana.BioMart.plantsmart22
-seqlevels(txdb) <- "5"
-genes5 <- as_tibble(genes(txdb)) %>%
-		mutate(seqnames=paste0("Chr", seqnames))
-colnames(genes5)[1] <- "chr"
 
 
 #===== 0. read input files =====
 physical_map <- "input/dig-col-f2_physical_map.csv"
 input <- "dig-col-f2.yaml"
 dirout <- "result"
-gtfpath <- "data/Araport11_GTF_genes_transposons.current.gtf"
 dir.create(dirout, recursive=T)
 
 yaml <- read_cross2(input)
 # read input files configured in yaml
-
-gtf <- read_tsv(gtfpath, col_names=F) %>%
-		dplyr::select(c(X1, X3, X4, X5, X7, X9))
-colnames(gtf) <- c("chr", "type", "start", "end", "strand", "id")
-
 
 #===== 1. calculating genotype probabilites =====
 # The first task is to calculate conditional genotype probabilities, given the observed marker data, at each putative QTL position. This is accomplished with the calc_genoprob() function.
