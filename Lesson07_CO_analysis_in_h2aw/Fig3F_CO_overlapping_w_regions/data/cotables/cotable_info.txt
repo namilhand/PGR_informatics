@@ -1,0 +1,4 @@
+Selected_inhouse_WT_cotable.txt: all 240 in-house WT GBS libraries
+wt_all_cov1.5_cotable.txt: WT GBS libraries with coverage greater than 1.5 were collected from in-house and Rowen's GBS libraries
+wt_all_cov2_cotable.txt: same as above but with coverage greater than 2
+h2aw_all_cotable.txt: crossover sites from all h2a.w mutants
