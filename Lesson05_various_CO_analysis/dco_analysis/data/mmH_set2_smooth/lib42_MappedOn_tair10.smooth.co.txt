@@ -1,0 +1,11 @@
+results/06_tiger/lib42_MappedOn_tair10	1	1	29502961	CC
+results/06_tiger/lib42_MappedOn_tair10	1	29503066	30427671	LL
+results/06_tiger/lib42_MappedOn_tair10	2	1	6210161	LL
+results/06_tiger/lib42_MappedOn_tair10	2	6210384	10148733	CC
+results/06_tiger/lib42_MappedOn_tair10	2	10148985	19698289	LL
+results/06_tiger/lib42_MappedOn_tair10	3	1	16020867	CL
+results/06_tiger/lib42_MappedOn_tair10	3	16021261	23459830	LL
+results/06_tiger/lib42_MappedOn_tair10	4	1	18124734	CC
+results/06_tiger/lib42_MappedOn_tair10	4	18127540	18585056	LL
+results/06_tiger/lib42_MappedOn_tair10	5	1	18584164	LL
+results/06_tiger/lib42_MappedOn_tair10	5	18584384	26975502	CL
