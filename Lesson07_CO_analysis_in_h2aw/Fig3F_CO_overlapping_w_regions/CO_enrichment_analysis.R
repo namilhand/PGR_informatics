@@ -12,7 +12,7 @@ loadfonts(device="pdf")
 #================================
 
 # read cotables
-dir_cotable="/home/namilhand/01_Projects/H2AW/h2aw_server/kb_scale_co/data/cotables"
+dir_cotable="data/cotables"
 co.wt_ir <- read_csv(file.path(dir_cotable, "wt_all_cov1.5_cotable.txt"), col_names=T)
 co.h2aw=read_csv(file.path(dir_cotable, "h2aw_all_cotable.txt"), col_names=T) %>%
     mutate(lib = case_when(genotype == "mmH" ~ lib,
@@ -46,7 +46,7 @@ readBed <- function(dat, start_open=T){
 }
 
 
-dir_features="/home/namilhand/01_Projects/H2AW/h2aw_server/kb_scale_co/data/features"
+dir_features="data/features"
 
 peri.gene <- readBed(dat=file.path(dir_features, "Araport11_genes_pericentromere.bed"))
 # n=4552
