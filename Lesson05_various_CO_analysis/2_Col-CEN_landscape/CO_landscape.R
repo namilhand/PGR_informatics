@@ -5,7 +5,6 @@ library(scales)
 library(extrafont)
 library(ggsci)
 library(ggbeeswarm)
-library(parallel)
 font_import(pattern="Arial", prompt=FALSE)
 loadfonts(device="pdf")
 
@@ -14,7 +13,7 @@ wd <- "/home/namilhand/01_Projects/PGR_informatics/Lesson05_various_CO_analysis/
 setwd(wd)
 dir.create(file.path(wd, "plots"), recursive=T)
 
-dir_gbs <- file.path(dirhome, "data/crossovers/genomeBin")
+dir_gbs <- file.path(wd, "data/crossovers/genomeBin")
 
 ## GBS landscape
 wt_i <- read_tsv(file.path(dir_gbs, "Selected_inhouse_WT_Col-CEN_genomeBin100kb.tsv"))
@@ -68,7 +67,7 @@ names(pal_GBS) <- c("wt","mj3", "h2aw")
 
 #====== Col-CEN genome setting ======
 
-col_cen <- read_tsv(file.path(dirhome, "data/colcen/Col-CEN_v1.2_chr15.fasta.fai"), col_names=c("chr", "length", "offset", "linelength", "linelength2")) %>%
+col_cen <- read_tsv(file.path(wd, "data/colcen/Col-CEN_v1.2_chr15.fasta.fai"), col_names=c("chr", "length", "offset", "linelength", "linelength2")) %>%
     dplyr::select(c(chr, length))
 
 chrs <- col_cen$chr
@@ -107,7 +106,7 @@ col_cen.coord <- col_cen %>%
 coord_pericen <- tibble(chr=1:5, north=pericen_left + tha.cum[1:5], south=pericen_right + tha.cum[1:5])
 
 # SV
-syri_out <- read_tsv(file.path(dirhome, "data/colcen/syri.out"), col_names=F)
+syri_out <- read_tsv(file.path(wd, "data/colcen/syri.out"), col_names=F)
 
 collect_sv <- function(sv_type){
     # sv_type <- "NOTAL"
